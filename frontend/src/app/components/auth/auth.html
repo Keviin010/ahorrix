@@ -1,0 +1,91 @@
+<section class="auth">
+  <aside class="lado">
+    <a routerLink="/entrar" class="marca" aria-label="Ahorrix">
+      <img src="assets/logo-ahorrix.png" alt="" width="44" height="44">
+      <span>Ahorrix</span>
+    </a>
+
+    <div class="lado-centro">
+      <h1 class="titulo">Compra cuando el precio baje.</h1>
+      <p class="lado-texto">
+        Pega el enlace de un producto de Éxito, Alkosto o Mattelsa y mira el precio que lee Ahorrix.
+      </p>
+    </div>
+
+    <app-escena class="escena-lado" />
+
+    <ul class="tiendas" aria-label="Tiendas compatibles">
+      <li>Éxito</li>
+      <li>Alkosto</li>
+      <li>Mattelsa</li>
+    </ul>
+  </aside>
+
+  <main class="formulario">
+    <div class="caja">
+      <div>
+        <div class="tabs" role="tablist">
+          <button class="tab" [class.activo]="modo() === 'login'" type="button" (click)="cambiarModo('login')">
+            Iniciar sesión
+          </button>
+          <button class="tab" [class.activo]="modo() === 'registro'" type="button" (click)="cambiarModo('registro')">
+            Crear cuenta
+          </button>
+        </div>
+
+        <h2 class="titulo">{{ modo() === 'login' ? 'Qué bueno verte de nuevo' : 'Crea tu cuenta' }}</h2>
+        <p class="bajada">
+          {{ modo() === 'login' ? 'Entra para ver cómo van tus productos.' : 'Empieza a vigilar tus precios en pocos segundos.' }}
+        </p>
+
+        <div class="google">
+          <button class="google-estatico" type="button" aria-disabled="true" title="Próximamente">
+            <svg viewBox="0 0 48 48" width="20" height="20" aria-hidden="true">
+              <path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.5 5.4 2.6 13.2l7.9 6.1C12.4 13.6 17.7 9.5 24 9.5z"/>
+              <path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.7c-.6 3-2.3 5.5-4.8 7.2l7.5 5.8c4.4-4.1 7.1-10.1 7.1-17.5z"/>
+              <path fill="#FBBC05" d="M10.5 28.7a14.5 14.5 0 0 1 0-9.4l-7.9-6.1a24 24 0 0 0 0 21.6l7.9-6.1z"/>
+              <path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.5-5.8c-2.1 1.4-4.9 2.3-8.4 2.3-6.3 0-11.6-4.1-13.5-9.8l-7.9 6.1C6.5 42.6 14.6 48 24 48z"/>
+            </svg>
+            Continuar con Google
+          </button>
+          <p class="separador"><span>o con tu correo</span></p>
+        </div>
+
+        <form (ngSubmit)="enviar()">
+          @if (modo() === 'registro') {
+            <div class="campo">
+              <label for="nombre">Nombre completo</label>
+              <input id="nombre" name="nombre" type="text" [(ngModel)]="nombre" placeholder="María Torres" autocomplete="name">
+            </div>
+          }
+
+          <div class="campo">
+            <label for="email">Correo electrónico</label>
+            <input id="email" name="email" type="email" [(ngModel)]="email" placeholder="tu@correo.com" autocomplete="email">
+          </div>
+
+          <div class="campo">
+            <label for="password">Contraseña</label>
+            <input id="password" name="password" type="password" [(ngModel)]="password" placeholder="••••••••" autocomplete="current-password">
+          </div>
+
+          @if (modo() === 'registro') {
+            <div class="campo">
+              <label for="confirmacion">Confirmar contraseña</label>
+              <input id="confirmacion" name="confirmacion" type="password" [(ngModel)]="confirmacion" placeholder="••••••••" autocomplete="new-password">
+            </div>
+          }
+
+          @if (error()) {
+            <div class="mensaje error" role="alert">{{ error() }}</div>
+          }
+
+          <button class="boton boton-cobalto enviar" type="submit" [disabled]="cargando()">
+            {{ cargando() ? 'Espera…' : (modo() === 'login' ? 'Iniciar sesión' : 'Crear cuenta') }}
+          </button>
+        </form>
+
+      </div>
+    </div>
+  </main>
+</section>

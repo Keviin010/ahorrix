@@ -1,0 +1,169 @@
+:host { display: block; }
+
+.escena {
+  position: relative;
+  width: min(520px, 100%);
+  height: 470px;
+  margin: 0 auto;
+}
+
+.brillo {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(46px);
+  opacity: 0.55;
+}
+.b1 { width: 260px; height: 260px; left: -30px; top: 70px; background: var(--cobalto); animation: deriva 11s ease-in-out infinite alternate; }
+.b2 { width: 220px; height: 220px; right: -20px; bottom: 10px; background: #7b7dff; animation: deriva 14s ease-in-out -4s infinite alternate-reverse; }
+
+.tarjeta {
+  position: absolute;
+  inset: 62px 38px auto 0;
+  padding: 20px 20px 18px;
+  border-radius: 26px;
+  background: #fff;
+  color: var(--tinta);
+  box-shadow: 0 30px 60px rgba(5, 6, 30, 0.45);
+  animation: flotar 7s ease-in-out infinite;
+}
+
+.tarjeta-cabeza { display: flex; align-items: center; gap: 12px; }
+.foto {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  background: var(--cielo);
+  color: var(--cobalto);
+  font-family: var(--fuente-titulo);
+  font-weight: 800;
+}
+.producto { margin: 0; font-weight: 700; }
+.tienda { margin: 0; font-size: 0.82rem; color: var(--suave); }
+
+.grafica { display: block; width: 100%; height: auto; margin: 14px 0 8px; overflow: visible; }
+.rejilla { stroke: var(--linea); stroke-width: 1; }
+.meta { stroke: var(--amarillo-oscuro); stroke-width: 2; stroke-dasharray: 6 6; }
+.trazo {
+  fill: none;
+  stroke: var(--cobalto);
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  transition: stroke-dashoffset 1.1s ease-in-out;
+}
+.punto {
+  fill: #fff;
+  stroke: var(--cobalto);
+  stroke-width: 4;
+  transition: transform 1.1s ease-in-out;
+}
+
+.tarjeta-pie {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-top: 12px;
+  border-top: 1px solid var(--linea);
+  font-size: 0.85rem;
+  color: var(--suave);
+}
+.tarjeta-pie .numero { font-size: 1.3rem; color: var(--tinta); }
+.logrado { color: var(--cobalto); font-weight: 700; }
+
+.colgante {
+  position: absolute;
+  top: 0;
+  right: 8px;
+  width: 152px;
+  transform-origin: 50% 0;
+  animation: columpio 4.4s ease-in-out infinite;
+}
+.clavo { display: block; width: 12px; height: 12px; margin: 0 auto -6px; border-radius: 50%; background: #fff; position: relative; z-index: 1; }
+.hilo { display: block; width: 3px; height: 56px; margin: 0 auto; background: rgba(255, 255, 255, 0.85); }
+.etiqueta {
+  position: relative;
+  padding: 24px 12px 14px;
+  border-radius: 18px;
+  background: var(--amarillo);
+  color: var(--noche);
+  text-align: center;
+  box-shadow: 0 16px 30px rgba(5, 6, 30, 0.35);
+}
+.etiqueta small { display: block; font-weight: 600; font-size: 0.78rem; }
+.etiqueta .numero { font-size: 1.35rem; }
+.agujero {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  margin-left: -6px;
+  border-radius: 50%;
+  background: var(--noche);
+}
+
+.sello {
+  position: absolute;
+  left: 30px;
+  top: 226px;
+  display: grid;
+  place-items: center;
+  width: 94px;
+  height: 94px;
+  border-radius: 50%;
+  background: var(--cobalto);
+  color: #fff;
+  font-family: var(--fuente-titulo);
+  font-weight: 800;
+  font-size: 1.15rem;
+  line-height: 1.1;
+  text-align: center;
+  border: 4px solid #fff;
+  opacity: 0;
+  transform: scale(0.3) rotate(-14deg);
+  transition: opacity 0.3s ease, transform 0.5s cubic-bezier(0.3, 1.6, 0.5, 1);
+}
+.sello.visible { opacity: 1; transform: rotate(-9deg); }
+
+.chip {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: #fff;
+  color: var(--noche);
+  font-weight: 700;
+  font-size: 0.88rem;
+  box-shadow: 0 14px 28px rgba(5, 6, 30, 0.35);
+  white-space: nowrap;
+}
+.c1 { left: 18px; bottom: -4px; animation: flotar 5s ease-in-out -1s infinite; }
+
+@keyframes columpio { 0%, 100% { rotate: 8deg; } 50% { rotate: -8deg; } }
+@keyframes flotar { 0%, 100% { translate: 0 0; } 50% { translate: 0 -12px; } }
+@keyframes deriva { from { translate: 0 0; scale: 1; } to { translate: 40px -30px; scale: 1.25; } }
+
+@media (max-width: 900px) {
+  .escena { height: 410px; }
+  .c1 { left: 0; }
+}
+@media (max-width: 560px) {
+  .escena { height: 470px; }
+  .tarjeta { inset: 132px 0 auto 0; }
+  .colgante { width: 128px; right: 14px; }
+  .hilo { height: 34px; }
+  .etiqueta .numero { font-size: 1.15rem; }
+    .sello { width: 78px; height: 78px; font-size: 0.9rem; top: 268px; left: 22px; }
+  .c1 { font-size: 0.8rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .colgante { animation: columpio 5s ease-in-out infinite !important; }
+  .tarjeta, .c1, .brillo { animation-duration: 9s !important; animation-iteration-count: infinite !important; }
+  .trazo, .punto { transition-duration: 1.1s !important; }
+}

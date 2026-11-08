@@ -1,0 +1,50 @@
+<section class="pagina">
+  <header class="banda">
+    <div class="contenedor">
+      <app-nav />
+      <h1 class="titulo">Mis productos</h1>
+      <p class="intro">Pega el enlace de un producto de Éxito, Alkosto o Mattelsa y mira el precio que lee Ahorrix.</p>
+    </div>
+  </header>
+
+  <main class="contenedor cuerpo">
+    <form class="formulario" (ngSubmit)="agregar()">
+      <div class="campo">
+        <label for="url">Enlace del producto</label>
+        <input id="url" name="url" [(ngModel)]="url" placeholder="https://www.exito.com/producto/..." autocomplete="off">
+      </div>
+
+      <div class="campo">
+        <label for="nombre">Nombre (opcional)</label>
+        <input id="nombre" name="nombre" [(ngModel)]="nombre" placeholder="Si lo dejas vacío, usamos el de la tienda" autocomplete="off">
+      </div>
+
+      @if (error()) {
+        <div class="error" role="alert">{{ error() }}</div>
+      }
+
+      <button class="boton boton-cobalto" type="submit" [disabled]="cargando()">
+        {{ cargando() ? 'Leyendo el precio…' : 'Vigilar producto' }}
+      </button>
+    </form>
+
+    @if (productos().length === 0) {
+      <p class="vacio">Todavía no vigilas ningún producto.</p>
+    } @else {
+      <div class="lista">
+        @for (producto of productos(); track producto.id) {
+          <article class="tarjeta">
+            <span class="tienda">{{ producto.tienda }}</span>
+            <h2 class="nombre">{{ producto.nombre }}</h2>
+            <p class="precio">{{ precio(producto.precioActual) }}</p>
+            <p class="detalle">Empezó en {{ precio(producto.precioInicial) }} el {{ fecha(producto.fechaRegistro) }}</p>
+            <div class="acciones">
+              <a [href]="producto.url" target="_blank" rel="noopener" class="ver">Ver en tienda</a>
+              <button type="button" class="quitar" (click)="eliminar(producto)">Dejar de vigilar</button>
+            </div>
+          </article>
+        }
+      </div>
+    }
+  </main>
+</section>

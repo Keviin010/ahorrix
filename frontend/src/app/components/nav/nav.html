@@ -1,0 +1,12 @@
+<nav class="nav">
+  <a routerLink="/dashboard" class="marca" aria-label="Ir al inicio de Ahorrix">
+    <img src="assets/logo-ahorrix.png" alt="" width="38" height="38">
+    <span>Ahorrix</span>
+  </a>
+
+  <div class="derecha">
+    <span class="avatar" aria-hidden="true">{{ inicial() }}</span>
+    <span class="nombre">{{ auth.user()?.nombre }}</span>
+    <button type="button" class="salir" (click)="auth.logout()">Salir</button>
+  </div>
+</nav>
