@@ -69,4 +69,4 @@ Kevin Dair Royo Cuesta, estudiante de Tecnología en Desarrollo de Software, Uni
 
 ## Derechos
 
-Todos los derechos reservados. El código se publica para consulta y no se autoriza su reutilización sin permiso del autor.
+Todos los derechos reservados. 
