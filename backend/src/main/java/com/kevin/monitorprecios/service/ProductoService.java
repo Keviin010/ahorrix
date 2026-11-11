@@ -29,8 +29,8 @@ public class ProductoService {
             throw new ResponseStatusException(BAD_REQUEST, "El enlace del producto es obligatorio");
         }
 
-        if (productoRepository.existsByUrl(request.url())) {
-            throw new ResponseStatusException(BAD_REQUEST, "Ese producto ya está siendo vigilado");
+        if (productoRepository.existsByEmailUsuarioIgnoreCaseAndUrl(email, request.url())) {
+            throw new ResponseStatusException(BAD_REQUEST, "Ya estás vigilando ese producto");
         }
 
         Tienda tienda = Tienda.de(request.url());

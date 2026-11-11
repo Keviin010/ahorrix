@@ -8,5 +8,5 @@ public interface ProductoRepository extends MongoRepository<Producto, String> {
 
     List<Producto> findByEmailUsuarioIgnoreCaseOrderByFechaRegistroDesc(String email);
 
-    boolean existsByUrl(String url);
+    boolean existsByEmailUsuarioIgnoreCaseAndUrl(String email, String url);
 }

@@ -31,7 +31,7 @@ docker run -d --name mongo -p 27017:27017 mongo:7
 
 ```
 cd backend
-./mvnw spring-boot:run
+sh mvnw spring-boot:run
 ```
 
 En Windows usa `mvnw.cmd spring-boot:run`. Para fijar la clave de los tokens, copia `secrets.example.properties` como `secrets.properties` y cambia el valor. Si no lo haces, el backend usa una clave temporal y las sesiones se pierden al reiniciar.
@@ -50,7 +50,7 @@ Abre http://localhost:4200, crea una cuenta y pega el enlace de un producto de �
 
 ```
 cd backend
-./mvnw test
+sh mvnw test
 ```
 
 ## API
@@ -63,10 +63,23 @@ cd backend
 | POST | `/api/productos` | Agrega un producto a partir de su enlace |
 | DELETE | `/api/productos/{id}` | Deja de vigilar un producto |
 
+## Despliegue
+
+El backend se construye con el `Dockerfile` de la raíz y el frontend con `frontend/netlify.toml`. El backend lee estas variables de entorno:
+
+| Variable | Para qué sirve | Valor por defecto |
+| --- | --- | --- |
+| `MONGODB_URI` | Cadena de conexión a MongoDB | `mongodb://localhost:27017/ahorrix_demo` |
+| `JWT_SECRET` | Clave que firma los tokens | clave temporal |
+| `FRONTEND_URL` | Direcciones del frontend permitidas, separadas por coma | `http://localhost:4200` |
+| `PORT` | Puerto del servidor, lo define el hosting | `8081` |
+
+La dirección de la API que usa el frontend en línea está en `frontend/src/app/api.ts`.
+
 ## Autor
 
 Kevin Dair Royo Cuesta, estudiante de Tecnología en Desarrollo de Software, Universidad Católica Luis Amigó.
 
 ## Derechos
 
-Todos los derechos reservados. 
+Todos los derechos reservados. El código se publica para consulta y no se autoriza su reutilización sin permiso del autor.
