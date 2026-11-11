@@ -69,7 +69,7 @@ El backend se construye con el `Dockerfile` de la raíz y el frontend con `front
 
 | Variable | Para qué sirve | Valor por defecto |
 | --- | --- | --- |
-| `MONGODB_URI` | Cadena de conexión a MongoDB | `mongodb://localhost:27017/ahorrix_demo` |
+| `MONGODB_URI` | Cadena de conexión a MongoDB | `mongodb://localhost:27017/https://ahorrix-app.netlify.app/` |
 | `JWT_SECRET` | Clave que firma los tokens | clave temporal |
 | `FRONTEND_URL` | Direcciones del frontend permitidas, separadas por coma | `http://localhost:4200` |
 | `PORT` | Puerto del servidor, lo define el hosting | `8081` |
