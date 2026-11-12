@@ -2,6 +2,10 @@
 
 Ahorrix vigila el precio de productos de tiendas en línea y avisa cuando bajan. Este repositorio publica una parte del proyecto: el acceso de usuarios y el registro de productos de Éxito, Alkosto y Mattelsa. El proyecto completo se entregó a la Universidad Católica Luis Amigó como Proyecto Integrador 2026.
 
+**Demo en línea:** https://ahorrix-app.netlify.app
+
+El demo corre en planes gratuitos. Si nadie lo visitó en los últimos 15 minutos, la primera carga puede tardar cerca de un minuto mientras el backend despierta.
+
 ## Qué incluye
 
 - Registro e inicio de sesión con contraseñas cifradas (BCrypt) y tokens JWT.
@@ -65,16 +69,24 @@ sh mvnw test
 
 ## Despliegue
 
-El backend se construye con el `Dockerfile` de la raíz y el frontend con `frontend/netlify.toml`. El backend lee estas variables de entorno:
+El demo en línea usa tres servicios gratuitos:
+
+| Parte | Servicio |
+| --- | --- |
+| Frontend | Netlify, con `frontend/netlify.toml` |
+| Backend | Render, construido con el `Dockerfile` de la raíz |
+| Base de datos | MongoDB Atlas |
+
+El backend lee estas variables de entorno:
 
 | Variable | Para qué sirve | Valor por defecto |
 | --- | --- | --- |
-| `MONGODB_URI` | Cadena de conexión a MongoDB | `mongodb://localhost:27017/https://ahorrix-app.netlify.app/` |
+| `MONGODB_URI` | Cadena de conexión a MongoDB | `mongodb://localhost:27017/ahorrix_demo` |
 | `JWT_SECRET` | Clave que firma los tokens | clave temporal |
 | `FRONTEND_URL` | Direcciones del frontend permitidas, separadas por coma | `http://localhost:4200` |
 | `PORT` | Puerto del servidor, lo define el hosting | `8081` |
 
-La dirección de la API que usa el frontend en línea está en `frontend/src/app/api.ts`.
+Las claves y la cadena de conexión se cargan como variables de entorno en Render y no están en el repositorio. La dirección de la API que usa el frontend en línea está en `frontend/src/app/api.ts`.
 
 ## Autor
 
